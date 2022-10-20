@@ -12,7 +12,7 @@ var _reactAddonsUpdate = _interopRequireDefault(require("react-addons-update"));
 var _classnames = _interopRequireDefault(require("classnames"));
 var _utils = require("../utils");
 var _NestableItem = _interopRequireDefault(require("./NestableItem"));
-var _omitDeepLodash = require("omit-deep-lodash");
+var _omitDeepLodash = _interopRequireDefault(require("omit-deep-lodash"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -284,6 +284,11 @@ var Nestable = /*#__PURE__*/function (_Component) {
         pathFrom = _ref.pathFrom,
         pathTo = _ref.pathTo;
       var extraProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      this.setState(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), {}, {
+          items: (0, _omitDeepLodash["default"])(prev.items, 'active')
+        });
+      });
       var _this$props8 = this.props,
         childrenProp = _this$props8.childrenProp,
         confirmChange = _this$props8.confirmChange;
@@ -398,7 +403,7 @@ var Nestable = /*#__PURE__*/function (_Component) {
         items = _this$state.items,
         isDirty = _this$state.isDirty,
         dragItem = _this$state.dragItem;
-      var updatedItems = (0, _omitDeepLodash.omitDeep)(items, 'active');
+      var updatedItems = (0, _omitDeepLodash["default"])(items, 'active');
       this.setState({
         itemsOld: null,
         dragItem: null,
