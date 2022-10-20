@@ -284,11 +284,6 @@ var Nestable = /*#__PURE__*/function (_Component) {
         pathFrom = _ref.pathFrom,
         pathTo = _ref.pathTo;
       var extraProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      this.setState(function (prev) {
-        return _objectSpread(_objectSpread({}, prev), {}, {
-          items: (0, _omitDeepLodash["default"])(prev.items, 'active')
-        });
-      });
       var _this$props8 = this.props,
         childrenProp = _this$props8.childrenProp,
         confirmChange = _this$props8.confirmChange;
@@ -301,9 +296,12 @@ var Nestable = /*#__PURE__*/function (_Component) {
       if (realPathTo.length === 0) return;
 
       // user can validate every movement
+      items = (0, _omitDeepLodash["default"])(items, 'active');
       var destinationPath = realPathTo.length > pathTo.length ? pathTo : pathTo.slice(0, -1);
       var destinationParent = this.getItemByPath(destinationPath);
-      if (destinationParent) destinationParent['active'] = true;
+      if (destinationParent) {
+        destinationParent['active'] = true;
+      }
       if (!confirmChange({
         dragItem: dragItem,
         destinationParent: destinationParent

@@ -131,10 +131,6 @@ class Nestable extends Component {
   };
 
   moveItem({ dragItem, pathFrom, pathTo }, extraProps = {}) {
-    this.setState((prev) => ({
-      ...prev,
-      items: omitDeep(prev.items, 'active'),
-    }));
     const { childrenProp, confirmChange } = this.props;
     const dragItemSize = this.getItemDepth(dragItem);
     let { items } = this.state;
@@ -146,9 +142,12 @@ class Nestable extends Component {
     if (realPathTo.length === 0) return;
 
     // user can validate every movement
+    items = omitDeep(items, 'active');
     const destinationPath = realPathTo.length > pathTo.length ? pathTo : pathTo.slice(0, -1);
     const destinationParent = this.getItemByPath(destinationPath);
-    if (destinationParent) destinationParent['active'] = true;
+    if (destinationParent) {
+      destinationParent['active'] = true;
+    }
     if (!confirmChange({ dragItem, destinationParent })) return;
 
     const removePath = this.getSplicePath(pathFrom, {
