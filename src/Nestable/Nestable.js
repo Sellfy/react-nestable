@@ -168,7 +168,7 @@ class Nestable extends Component {
     if (destinationParent) destinationParent['active'] = true;
 
     const startParent = this.getItemByPath(pathFrom.slice(0, -1));
-    if (startParent && destinationParent) delete startParent['active'];
+    if (startParent) delete startParent['active'];
 
     if (!confirmChange({ dragItem, destinationParent })) return;
 
