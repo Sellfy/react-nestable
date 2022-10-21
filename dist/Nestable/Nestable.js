@@ -296,12 +296,11 @@ var Nestable = /*#__PURE__*/function (_Component) {
       if (realPathTo.length === 0) return;
 
       // user can validate every movement
-      items = (0, _omitDeepLodash["default"])(items, 'active');
       var destinationPath = realPathTo.length > pathTo.length ? pathTo : pathTo.slice(0, -1);
       var destinationParent = this.getItemByPath(destinationPath);
-      if (destinationParent) {
-        destinationParent['active'] = true;
-      }
+      if (destinationParent) destinationParent['active'] = true;
+      var startParent = this.getItemByPath(pathFrom.slice(0, -1));
+      if (startParent) delete startParent['active'];
       if (!confirmChange({
         dragItem: dragItem,
         destinationParent: destinationParent
