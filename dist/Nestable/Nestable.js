@@ -300,7 +300,7 @@ var Nestable = /*#__PURE__*/function (_Component) {
       var destinationParent = this.getItemByPath(destinationPath);
       if (destinationParent) destinationParent['active'] = true;
       var startParent = this.getItemByPath(pathFrom.slice(0, -1));
-      if (startParent) delete startParent['active'];
+      if (startParent && destinationParent) delete startParent['active'];
       if (!confirmChange({
         dragItem: dragItem,
         destinationParent: destinationParent
