@@ -477,7 +477,7 @@ class Nestable extends Component {
       const scroll = getTotalScroll(this.el);
 
       this.elCopyStyles = {
-        marginTop: offset.top - clientY - scroll.top,
+        marginTop: offset.top - clientY,
         marginLeft: offset.left - clientX - scroll.left,
         ...transformProps,
       };

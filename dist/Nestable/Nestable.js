@@ -132,7 +132,7 @@ var Nestable = /*#__PURE__*/function (_Component) {
         var offset = (0, _utils.getOffsetRect)(_this.el);
         var scroll = (0, _utils.getTotalScroll)(_this.el);
         _this.elCopyStyles = _objectSpread({
-          marginTop: offset.top - clientY - scroll.top,
+          marginTop: offset.top - clientY,
           marginLeft: offset.left - clientX - scroll.left
         }, transformProps);
       } else {
